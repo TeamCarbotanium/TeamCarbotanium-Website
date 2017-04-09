@@ -4,7 +4,7 @@
   session_start();
   if(isset($_SESSION['user'])!="")
   {
-    header("Location: home.php");
+    header("Location: redirect.php");
   }
   include_once 'php/dbconnect.php';
 
@@ -18,10 +18,10 @@
     $email = strip_tags($email);
     $email = htmlspecialchars($email);
 
-    //username cleanup
-    $regUsername = trim($_POST['regUsername']);
-    $regUsername = strip_tags($regUsername);
-    $regUsername = htmlspecialchars($regUsername);
+    // //username cleanup
+    // $regUsername = trim($_POST['regUsername']);
+    // $regUsername = strip_tags($regUsername);
+    // $regUsername = htmlspecialchars($regUsername);
 
     //password cleanup
     $regPassword = trim($_POST['regPassword']);
@@ -34,38 +34,22 @@
     $repPassword = htmlspecialchars($repPassword);
 
     //username validation
-    if(empty($regUsername))
-    {
-      $error = true;
-      ?>
-        <script>
-           alert("Please enter a username.");
-        </script>
-      <?php
-    } else if (strlen($regUsername) < 3) {
-      $error = true;
-      ?>
-        <script>
-          alert("Name must have atleast 3 characters.");
-        </script>
-      <?php
-    } else if (!preg_match("/^[a-zA-Z0-9]*$/",$regUsername)) {
-      $error = true;
-      ?>
-        <script>
-          alert("Name must contain alphanumeric characters only.");
-        </script>
-      <?php
-    }
+    // if(empty($regUsername))
+    // {
+    //   $error = true;
+    //   $regUsernameErr = "Please enter a username.";
+    // } else if (strlen($regUsername) < 3) {
+    //   $error = true;
+    //   $regUsernameErr = "Username must be atleast 3 characters long.";
+    // } else if (!preg_match("/^[a-zA-Z0-9]*$/",$regUsername)) {
+    //   $error = true;
+    //   $regUsernameErr = "Username must contain alphanumeric characters only.";
+    // }
 
     //email validation
     if( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
       $error = true;
-      ?>
-        <script>
-          alert("Please enter valid email address.");
-        </script>
-      <?php
+      $emailErr = "Please enter a valid email.";
     } else {
      // check email exist or not
       global $conn;
@@ -74,40 +58,24 @@
      $count = mysqli_num_rows($result);
      if($count!=0){
       $error = true;
-      ?>
-        <script>
-          alert("Provided Email is already in use.");
-        </script>
-      <?php
+      $emailErr = "Provided email is already in use. Click X to go to login.";
      }
     }
 
     //password validation
     if(empty($regPassword)){
       $error = true;
-      ?>
-        <script>
-          alert("Please enter a password.");
-        </script>
-      <?php
+      $regPassErr = "Please enter a password.";
     } else if(strlen($regPassword) < 6) {
       $error = true;
-      ?>
-        <script>
-          alert("Password must have atleast 6 characters.");
-        </script>
-      <?php
+      $regPassErr = "Password must have atleast 6 characters.";
     }
 
     //password confirmation
     if($regPassword != $repPassword)
     {
       $error = true;
-      ?>
-        <script>
-          alert("Passwords do not match.");
-        </script>
-      <?php
+      $confPassErr = "Passwords do not match.";
     }
 
     //SHA-256 password encryption
@@ -116,23 +84,19 @@
     // if there's no error, continue to signup
     if( !$error ) {
    
-     $query = "INSERT INTO userTable(userName,userEmail,userPass) VALUES('$regUsername','$email','$regPass')";
+     $query = "INSERT INTO userTable(userEmail,userPass) VALUES('$email','$regPass')";
      $res = mysqli_query($conn, $query);
      if($res) {
-      ?>
-        <script>
-          alert("Successfully registered, you may login now");
-        </script>
-      <?php
-      unset($name);
-      unset($email);
-      unset($pass);
+        $success = "Successfully registered!";
+        $resu=mysql_query($conn, "SELECT userId FROM userTable WHERE userEmail='$email'");
+        $row=mysql_fetch_array($resu);
+        $_SESSION['user'] = $row['userId'];
+        unset($email);
+        unset($regPass);
+        unset($regPassword);
+        header("Location: username"); //Temporary
      } else {
-      ?>
-        <script>
-          alert("Something went wrong, try again later...");
-        </script>
-      <?php
+      $error = "Something went wrong, please try again later.";
      } 
     }
     
@@ -160,14 +124,32 @@
   
 <!-- Mixins-->
 <!-- Pen Title-->
+<?php
+  if(isset($emailErr))
+  {
+    ?>
+      <h3 class="error"><?php echo $emailErr; ?></h3>
+    <?php
+  }else if(isset($regPassErr))
+  {
+    ?>
+      <h3 class="error"><?php echo $regPassErr; ?></h3>
+    <?php
+  }else if(isset($confPassErr))
+  {
+    ?>
+      <h3 class="error"><?php echo $confPassErr; ?></h3>
+    <?php
+  }
+?>
 <div class="container">
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
     <form method="post" autocomplete="off">
       <div class="input-container">
-        <input name="username" id="#{label}" required="required"/>
-        <label for="#{label}">Username</label>
+        <input name="loginEmail" id="#{label}" required="required"/>
+        <label for="#{label}">Email</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
@@ -192,11 +174,11 @@
         <label for="#{label}">Email</label>
         <div class="bar"></div>
       </div>
-      <div class="input-container">
+      <!-- <div class="input-container">
         <input name="regUsername" id="#{label}" required="required" type="username"/>
         <label for="#{label}">Username</label>
         <div class="bar"></div>
-      </div>
+      </div> -->
       <div class="input-container">
         <input name="regPassword" id="#{label}" required="required" type="password"/>
         <label for="#{label}">Password</label>
@@ -204,7 +186,7 @@
       </div>
       <div class="input-container">
         <input name="repPassword" id="#{label}" required="required" type="password"/>
-        <label for="#{label}">Repeat Password</label>
+        <label for="#{label}">Confirm Password</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">
