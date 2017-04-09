@@ -1,0 +1,32 @@
+[09-Apr-2017 03:13:16 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 211
+[09-Apr-2017 03:13:44 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 03:49:15 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 03:50:31 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 04:10:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 04:11:46 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 04:13:33 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 210
+[09-Apr-2017 04:14:13 UTC] PHP Warning:  include_once(dbconnect.php): failed to open stream: No such file or directory in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:14:13 UTC] PHP Warning:  include_once(): Failed opening 'dbconnect.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:15:05 UTC] PHP Warning:  include_once(account/dbconnect.php): failed to open stream: No such file or directory in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:15:05 UTC] PHP Warning:  include_once(): Failed opening 'account/dbconnect.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:15:20 UTC] PHP Warning:  include_once(account/dbconnect.php): failed to open stream: No such file or directory in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:15:20 UTC] PHP Warning:  include_once(): Failed opening 'account/dbconnect.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/failtas1/public_html/account/login.php on line 9
+[09-Apr-2017 04:28:01 UTC] PHP Warning:  mysql_connect(): Access denied for user 'failtas'@'185.38.149.155' (using password: YES) in /home/failtas1/public_html/account/php/dbconnect.php on line 7
+[09-Apr-2017 04:28:01 UTC] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/failtas1/public_html/account/php/dbconnect.php on line 8
+[09-Apr-2017 04:28:01 UTC] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/failtas1/public_html/account/php/dbconnect.php on line 8
+[09-Apr-2017 04:42:52 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 209
+[09-Apr-2017 04:43:21 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 209
+[09-Apr-2017 04:44:04 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 209
+[09-Apr-2017 04:44:25 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 209
+[09-Apr-2017 04:44:44 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/failtas1/public_html/account/login.php on line 209
+[09-Apr-2017 04:55:47 UTC] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 04:55:47 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 04:55:47 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/failtas1/public_html/account/login.php on line 73
+[09-Apr-2017 04:59:55 UTC] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 04:59:55 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 04:59:55 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/failtas1/public_html/account/login.php on line 73
+[09-Apr-2017 14:01:55 UTC] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 14:01:55 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/failtas1/public_html/account/login.php on line 72
+[09-Apr-2017 14:01:55 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/failtas1/public_html/account/login.php on line 73
+[09-Apr-2017 14:33:24 UTC] PHP Warning:  mysql_query() expects parameter 2 to be resource, object given in /home/failtas1/public_html/account/login.php on line 73
+[09-Apr-2017 14:33:24 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, null given in /home/failtas1/public_html/account/login.php on line 74
