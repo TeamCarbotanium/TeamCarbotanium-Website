@@ -429,6 +429,15 @@ body {
 .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
   display: none;
 }
+.error {
+  white-space: nowrap;
+  background: red;
+  height: auto;
+  padding: 4px auto;
+  margin: 2px;
+  text-align: center;
+  color: #000000;
+}
 
 /* Keyframes */
 @-webkit-keyframes buttonFadeInUp {
