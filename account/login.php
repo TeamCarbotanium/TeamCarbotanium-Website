@@ -49,7 +49,7 @@
           alert("Name must have atleast 3 characters.");
         </script>
       <?php
-    } else if (!preg_match("/[^a-z_\-0-9]/i",$regUsername)) {
+    } else if (!preg_match("/^[a-zA-Z0-9]*$/",$regUsername)) {
       $error = true;
       ?>
         <script>
@@ -70,8 +70,8 @@
      // check email exist or not
       global $conn;
      $query = "SELECT userEmail FROM userTable WHERE userEmail='$email'";
-     $result = mysql_query($query, $conn);
-     $count = mysql_num_rows($result);
+     $result = mysqli_query($conn, $query);
+     $count = mysqli_num_rows($result);
      if($count!=0){
       $error = true;
       ?>
@@ -99,6 +99,17 @@
       <?php
     }
 
+    //password confirmation
+    if($regPassword != $repPassword)
+    {
+      $error = true;
+      ?>
+        <script>
+          alert("Passwords do not match.");
+        </script>
+      <?php
+    }
+
     //SHA-256 password encryption
     $regPass= hash('sha256', $regPassword);
 
@@ -106,7 +117,7 @@
     if( !$error ) {
    
      $query = "INSERT INTO userTable(userName,userEmail,userPass) VALUES('$regUsername','$email','$regPass')";
-     $res = mysql_query($query);
+     $res = mysqli_query($conn, $query);
      if($res) {
       ?>
         <script>
@@ -182,7 +193,7 @@
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input name"regUsername" id="#{label}" required="required" type="username"/>
+        <input name="regUsername" id="#{label}" required="required" type="username"/>
         <label for="#{label}">Username</label>
         <div class="bar"></div>
       </div>
